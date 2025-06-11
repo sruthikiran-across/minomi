@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>minomi kids</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: pink;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      background-color: #F8C3CD;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      border-top: 2px solid white;
+      border-bottom: 2px solid white;
+      flex-wrap: wrap;
+    }
+
+    .navbar-logo a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar-menu li {
+      margin-left: 50px;
+    }
+
+    .navbar-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2em;
+      transition: color 0.3s ease;
+    }
+
+    .navbar-menu a:hover {
+      color: #eeeeee;
+    }
+
+    .white-section {
+      background-color: white;
+      padding: 0;
+      height: 100vh;
+    }
+
+    .white-section img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .sec-section {
+      background-color: hsl(350, 94%, 81%);
+      padding: 40px 5%;
+      border-top: 2px solid white;
+      border-bottom: 2px solid white;
+    }
+
+    .sec-title {
+      font-family: 'Pacifico', cursive;
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: white;
+    }
+
+    .sec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .sec-part {
+      position: relative;
+      background-color: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s ease;
+      height: 300px;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .sec-part:hover {
+      height: 400px;
+    }
+
+    .sec-part img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 20px;
+      transition: all 0.4s ease;
+    }
+
+    .sec-part:hover img {
+      width: 45%;
+      border-radius: 20px 0 0 20px;
+    }
+
+    .info {
+      display: none;
+      padding: 20px;
+      color: #333;
+      width: 55%;
+    }
+
+    .sec-part:hover .info {
+      display: block;
+    }
+
+    .info h3 {
+      font-family: 'Pacifico', cursive;
+      margin-top: 0;
+      color: #eb1189;
+    }
+
+    footer {
+      background-color: #eb1189;
+      color: #fff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    #rabbit {
+      position: fixed;
+      width: 80px;
+      left: 0;
+      top: 0;
+      z-index: 999;
+      pointer-events: none;
+      transition: transform 0.5s ease, left 2s ease, top 2s ease;
+    }
+
+    .boxo {
+      width: 90%;
+      background-color: rgb(233, 112, 118);
+      margin: 40px auto;
+      display: flex;
+      padding: 30px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .boxo .images {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 35%;
+    }
+
+    .boxo .images img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .boxo .about-content {
+      width: 60%;
+      text-align: center;
+    }
+
+    .boxo .about-content h1 {
+      font-family: 'Pacifico', cursive;
+      font-size: 2em;
+      color: white;
+      margin-bottom: 20px;
+    }
+
+    .boxo .about-content p {
+      font-size: 1.1em;
+      color: #333;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    .footer-flex {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+    .footer-flex > div {
+      width: 30%;
+      min-width: 200px;
+      text-align: left;
+    }
+
+    /* RESPONSIVE MEDIA QUERIES */
+    @media (max-width: 1024px) {
+      .sec-part:hover {
+        height: auto;
+        flex-direction: column;
+      }
+
+      .sec-part:hover img {
+        width: 100%;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .sec-part:hover .info {
+        width: 100%;
+      }
+
+      .info {
+        width: 100%;
+        display: block;
+      }
+
+      .boxo {
+        flex-direction: column;
+        padding: 20px;
+      }
+
+      .boxo .images,
+      .boxo .about-content {
+        width: 100%;
+      }
+
+      .footer-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-flex > div {
+        width: 100% !important;
+        margin-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      .navbar-menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0;
+        background-color: #F8C3CD;
+      }
+
+      .navbar-menu li {
+        margin: 10px 0;
+      }
+
+      .navbar-menu.active {
+        display: flex;
+      }
+
+      .navbar {
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .sec-title {
+        font-size: 1.8em;
+      }
+
+      .boxo .about-content h1 {
+        font-size: 1.5em;
+      }
+
+      footer img {
+        width: 24px;
+      }
+
+      #rabbit {
+        width: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="navbar-logo">
+      <a href="#">minomi</a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+    <ul class="navbar-menu" id="menu">
+      <li><a href="#home1">Home</a></li>
+      <li><a href="minomilife.html">Lifestyle</a></li>
+      <li><a href="#collaborations">Collaboration</a></li>
+      <li><a href="kids.html">Minomi Kids</a></li>
+    </ul>
+  </nav>
+
+  <div class="white-section" id="home1">
+    <img src="kids minomi.png" alt="Kids Cover Image" loading="lazy">
+  </div>
+
+  <div class="sec-section" id="plushies">
+    <div class="sec-title">Plushies</div>
+    <div class="sec-grid">
+      <div class="sec-part">
+        <img src="harry potter minomi.png" alt="Harry Potter Bunny" loading="lazy" />
+        <div class="info">
+          <h3>Harry Potter Bunny</h3>
+          <p>Meet our magical plushie inspired by the wizarding world. Perfect for your little adventurer!</p>
+        </div>
+      </div>
+      <div class="sec-part">
+        <img src="diamond bunnies.png" alt="Diamond Bunny" loading="lazy" />
+        <div class="info">
+          <h3>Diamond Bunny</h3>
+          <p>Shiny and soft, this plushie brings sparkle and smiles to every cuddle.</p>
+        </div>
+      </div>
+      <div class="sec-part">
+        <img src="princess minomi.png" alt="Princess Bunny" loading="lazy" />
+        <div class="info">
+          <h3>Princess Bunny</h3>
+          <p>A royal companion for your little princess. Soft, cute, and regal!</p>
+        </div>
+      </div>
+      <div class="sec-part">
+        <img src="hotwheel rabbits.png" alt="Racing Rabbit" loading="lazy" />
+        <div class="info">
+          <h3>Racing Rabbit</h3>
+          <p>Zoom through adventures with this speedy little bunny buddy.</p>
+        </div>
+      </div>
+      <div class="sec-part">
+        <img src="kawai cat cover.png" alt="Kawaii Cat" loading="lazy" />
+        <div class="info">
+          <h3>Kawaii Cat</h3>
+          <p>Not a bunny, but too cute to leave out. This kawaii cat plushie is a hug in fur form.</p>
+        </div>
+      </div>
+      <div class="sec-part">
+        <img src="rolls royce rabbits.png" alt="Rolls Royce Rabbits" loading="lazy" />
+        <div class="info">
+          <h3>Rolls Royce Rabbits</h3>
+          <p>Have fun with the girly boss squads driving around in the iconic Minomi Rolls Royce.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="boxo">
+    <div class="images">
+      <img src="lipbalm.png" alt="Lip Balm" loading="lazy" />
+      <img src="sheet masks.png" alt="Sheet Masks" loading="lazy" />
+    </div>
+    <div class="about-content">
+      <h1>"cuties takes care of themselves"</h1>
+      <p>
+        At Minomi, we believe self-care is for every cutie. From silky lip balms to nourishing sheet masks, every product is crafted with love to help you feel pampered, confident, and glowing. Because you deserve to take care of yourself — in the cutest way possible. 💖
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-flex">
+      <div>
+        <h2>Contact Me</h2>
+        <p>Email: minomiofficial@gmail.com</p>
+        <p>Phone: +411098765789</p>
+        <p>Address: USA</p>
+      </div>
+      <div>
+        <h2>Follow Me</h2>
+        <a href="https://in.linkedin.com/"><img src="linkedin.png" style="width:30px"> LinkedIn</a><br>
+        <a href="https://github.com/"><img src="github.png" style="width:30px"> GitHub</a><br>
+        <a href="https://www.instagram.com/"><img src="insta.png" style="width:30px"> Instagram</a>
+      </div>
+      <div>
+        <p>minomi:</p>
+        <p style="font-family: 'Pacifico', cursive;">celebrating womanhood globally</p>
+      </div>
+    </div>
+    <p style="margin-top: 20px;">&copy; 2010 minomi. All Rights Reserved.</p>
+  </footer>
+
+  <img src="stick.png" id="rabbit" alt="Rabbit" loading="lazy" />
+
+  <script>
+    // Toggle hamburger menu
+    function toggleMenu() {
+      document.getElementById("menu").classList.toggle("active");
+    }
+
+    // Move rabbit randomly
+    const rabbit = document.getElementById("rabbit");
+
+    function randomPosition() {
+      const vw = window.innerWidth - rabbit.offsetWidth;
+      const vh = window.innerHeight - rabbit.offsetHeight;
+      return {
+        x: Math.floor(Math.random() * vw),
+        y: Math.floor(Math.random() * vh)
+      };
+    }
+
+    function hopAround() {
+      const { x, y } = randomPosition();
+      rabbit.style.left = `${x}px`;
+      rabbit.style.top = `${y}px`;
+      rabbit.style.transform = `scaleX(${Math.random() < 0.5 ? 1 : -1})`;
+    }
+
+    hopAround(); // initial move
+    setInterval(hopAround, 2500); // repeat
+  </script>
+
+</body>
+</html>
